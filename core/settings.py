@@ -45,7 +45,6 @@ INSTALLED_APPS = (
     'authent',
     'api',
     'rest_framework',
-    'djcelery',
     'stats',
     'international',
 )
@@ -119,8 +118,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'myproject',
-        'USER': 'myprojectuser',
-        'PASSWORD': '123456',
+        'USER': 'elloumi',
+        'PASSWORD': 'far15ell16',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -172,30 +171,3 @@ LOGIN_URL = '/'
 
 
 
-CELERYD_HIJACK_ROOT_LOGGER = False
-CELERY_REDIRECT_STDOUTS = True
-CELERY_REDIRECT_STDOUTS_LEVEL = 'DEBUG'
-
-BROKER_URL = 'amqp://elloumi:k0$c2016@localhost:5672/kosc'
-CELERY_RESULT_BACKEND = "rpc://elloumi:k0$c2016@localhost:5672/kosc"
-
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'Europe/Paris'
-CELERY_ENABLE_UTC = True
-
-
-CELERY_TRACK_STARTED = True
-
-CELERYD_POOL_RESTARTS = True
-
-CELERY_CREATE_MISSING_QUEUES = True
-
-CELERY_ROUTES = {
-    'tasks.add': 'low-priority',
-}
-
-CELERY_ANNOTATIONS = {
-    'tasks.add': {'rate_limit': '10/m'}
-}
