@@ -15,7 +15,6 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from authentication.mixins import RedirectIfAuthenticatedMixin
 from django.core.files import File
-from tasks import add
 from django.contrib import messages
 from django.views.decorators.cache import cache_page
 from django.core.paginator import Paginator, EmptyPage
@@ -117,10 +116,7 @@ def add_contact(request):
 
     return render(request, 'blog/add_contact.html', locals())
 
-def tache(request, n1, n2):
-    add.delay(n1, n2)
-    messages.add_message(request, messages.INFO, "La tâche x a démarré")
-    return render(request, 'blog/tache.html', locals())
+
 
 
 

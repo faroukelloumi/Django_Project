@@ -10,7 +10,6 @@ urlpatterns = [
     url(r'^list_article/$', views.ListArticle.as_view(), name='list_article'),
     url(r'^article/(?P<pk>\d+)$', views.LireArticle.as_view(), name='article'),
     url(r'^articles/(\d{2})(\d{4})$', views.list_articles),
-    url(r'^tache/(\d+)/(\d+)$', views.tache),
     url(r'^date$', views.date_actuelle),
     url(r'^addition/(?P<n1>\d+)/(?P<n2>\d+)/$', views.addition),
     url(r'^condition/(?P<sexe>\w*)$', views.condition),

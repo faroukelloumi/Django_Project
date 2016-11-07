@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'authent',
     'api',
     'rest_framework',
+    'djcelery',
     'stats',
     'international',
 )
@@ -118,8 +119,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'myproject',
-        'USER': 'elloumi',
-        'PASSWORD': 'far15ell16',
+        'USER': 'myprojectuser',
+        'PASSWORD': '123456',
         'HOST': 'localhost',
         'PORT': '',
     }
