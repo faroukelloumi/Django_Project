@@ -13,7 +13,6 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
-from authentication.mixins import RedirectIfAuthenticatedMixin
 from django.core.files import File
 from django.contrib import messages
 from django.views.decorators.cache import cache_page
