@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+{% load bootstrap3 %}
+{% block title %}Ma page d'accueil{% endblock %}
+
+{% block content %}
+
+<h1>Ajout d'une nouvelle catégorie</h1>
+
+{% if envoi %}Votre nouvelle categorie a été ajoutée !{% endif %}
+
+<form action="" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" value="save" />
+</form>
+
+{% endblock %}

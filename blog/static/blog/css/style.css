@@ -1,0 +1,48 @@
+h1
+{
+    font-style: oblique;
+    color: #154696;
+}
+
+
+.pos
+{
+    width: 200px;
+    position: absolute;
+    left: 0px;
+    top: -8px;
+}
+
+.pos:hover
+{
+    cursor: pointer;
+}
+
+.navbar-fixed-bottom
+{
+    max-height: 200px;
+}
+
+.rep_pos
+{
+    width : 100%;
+    background-color: lightgreen;
+    border: 2px solid green;
+    border-radius: 6px;
+    text-align: left;
+    text-color: green;
+    padding-left : 15px;
+    padding-top : 15px;
+    padding-bottom : 15px;
+    padding-right : 15px;
+}
+
+.logo
+{
+    width: 100%;
+}
+
+.taille
+{
+   width: 20px;
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$USER_HOME$/Training/Django/Django_Project/My_project/.idea/crepes_bretonnes.iml" filepath="$USER_HOME$/Training/Django/Django_Project/My_project/.idea/crepes_bretonnes.iml" />
+      <module fileurl="file://$USER_HOME$/workspaces/kosc_wave_dep/django-kosc-history/.idea/django-kosc-history.iml" filepath="$USER_HOME$/workspaces/kosc_wave_dep/django-kosc-history/.idea/django-kosc-history.iml" />
+      <module fileurl="file://$USER_HOME$/workspaces/kosc_wave/.idea/kosc_wave.iml" filepath="$USER_HOME$/workspaces/kosc_wave/.idea/kosc_wave.iml" />
+    </modules>
+  </component>
+</project>

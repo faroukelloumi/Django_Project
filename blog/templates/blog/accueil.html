@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+
+{% block title %}Ma page d'accueil{% endblock %}
+
+{% block content %}
+
+{% if not user.is_authenticated %}
+    <h1>Bonjour</h1>
+{% else %}
+    <h1>Bonjour {{ user.first_name }} !!</h1>
+    {% if not user.profile.avatar %}
+        <p> Si vous voulez ajouter un avatar à votre profil, appuyer <a href="/auth/add_avatar">ici</a></p>
+    {% else %}
+        <h2>Tu vas bien ?</h2>
+    {% endif %}
+{% endif %}
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends 'index.html' %}
+
+{% block title %}Ma page d'accueil{% endblock %}
+
+{% block content %}
+
+<h2>Bienvenue sur mon site d'entrainement Django</h2>
+
+{% if articles %}
+    <ul id="article">
+        {% for article in articles %}
+            <il>
+                <h2>{{ article.titre }}</h2>
+                <p>{{ article.auteur }}</p>
+                <p><a href="/blog/article/{{ article.id }}">Ouvrir l'article</a></p>
+            </il>
+        {% endfor %}
+    </ul>
+    {# .... **Now the pagination section** .... #}
+    {% if is_paginated %}
+
+        <ul class="pagination"></ul>
+        <script>
+            var n_pages = {{ page_obj.paginator.num_pages }}
+            var url = window.location.search;
+            var n = url.substring(url.lastIndexOf("=")+1);
+            console.log(n_pages, url, n);
+            if (n > 1) {
+                linkElt = document.createElement("li");
+                pageElt = document.createElement("a");
+                pageElt.href = "/blog/list_article?page=" + 1;
+                pageElt.textContent = "<<";
+                linkElt.appendChild(pageElt);
+                document.querySelector(".pagination").appendChild(linkElt);
+                n--;
+                var linkElt = document.createElement("li");
+                var pageElt = document.createElement("a");
+                pageElt.href = "/blog/list_article?page=" + n;
+                n++;
+                pageElt.textContent = "<";
+                linkElt.appendChild(pageElt);
+                document.querySelector(".pagination").appendChild(linkElt);
+             }
+            for (i = 1; i <= n_pages ; i++) {
+                var linkElt = document.createElement("li");
+                var pageElt = document.createElement("a");
+                pageElt.href = "/blog/list_article?page=" + i;
+                pageElt.textContent = i;
+                if (i == n) {
+                    linkElt.classList.add("active");
+                };
+                linkElt.appendChild(pageElt);
+                document.querySelector(".pagination").appendChild(linkElt);
+            }
+            if (n < n_pages) {
+                n++;
+                linkElt = document.createElement("li");
+                pageElt = document.createElement("a");
+                pageElt.href = "/blog/list_article?page=" + n;
+                pageElt.textContent = ">";
+                linkElt.appendChild(pageElt);
+                document.querySelector(".pagination").appendChild(linkElt);
+                var linkElt = document.createElement("li");
+                var pageElt = document.createElement("a");
+                pageElt.href = "/blog/list_article?page=" + n_pages;
+                pageElt.textContent = ">>";
+                linkElt.appendChild(pageElt);
+                document.querySelector(".pagination").appendChild(linkElt);
+            }
+        </script>
+    {% endif %}
+{% else %}
+    <h3>Mes articles</h3>
+    <p>Pas d'articles!!! :(</p>
+{% endif %}
+{# .... **More content, footer, etc.** .... #}
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+
+{% block title %}Boucle{% endblock %}
+
+{% block content %}
+
+    <h1>Bienvenue !</h1>
+
+    <ul>
+        {% for i in bouc %}
+             <li>{{ i }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

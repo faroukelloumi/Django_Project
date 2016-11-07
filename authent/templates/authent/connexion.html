@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <link href="/static/blog/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="/static/blog/css/style.css" rel="stylesheet">
+    <link href="/static/blog/css/clean-blog.min.css" rel="stylesheet">
+{% load bootstrap3 %}
+<head>
+    <meta charset="UTF-8">
+    <title>Connexion</title>
+</head>
+<body>
+<div class="container">
+    <div class="row" style="margin-top: 100px">
+        <div class="col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1">
+            <img class="logo" src="/static/blog/img/logo_white.png">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-8 col-lg-offset-3 col-md-offset-2">
+            <h1>Se connecter</h1>
+            {% if error %}
+                <p><strong>Utilisateur inconnu ou mauvais mot de passe.</strong></p>
+            {% endif %}
+
+            {% if user.is_authenticated %}
+                Vous êtes connecté, {{ user.username }} !
+                    <a href="/blog/home"> Liste des articles </a>
+            {% else %}
+                <form method="post" action="">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-1">
+                                <input type="submit" value="Se connecter" />
+                            </div>
+                            <div class="col-lg-offset-3 col-lg-1">
+                                <a class="btn btn-link" href="/auth/enregistrement">S'enregistrer</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

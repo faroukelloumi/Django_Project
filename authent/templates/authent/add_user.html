@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <link href="/static/blog/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="/static/blog/css/style.css" rel="stylesheet">
+    <link href="/static/blog/css/clean-blog.min.css" rel="stylesheet">
+{% load bootstrap3 %}
+<head>
+    <meta charset="UTF-8">
+    <title>Enregistrement</title>
+</head>
+<body>
+
+
+<div class="container">
+    <div class="row" style="margin-top: 100px">
+        <div class="col-lg-8 col-md-10 col-lg-offset-2 col-md-offset-1">
+            <img class="logo" src="/static/blog/img/logo_white.png">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-8 col-lg-offset-3 col-md-offset-2">
+            <h1>S'enregistrer</h1>
+                <form method="post" action="">
+                    {% csrf_token %}
+                    {% bootstrap_form form %}
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-1">
+                                <input type="submit" value="S'enregistrer" />
+                            </div>
+                            <div class="col-lg-offset-3 col-lg-1">
+                                <a class="btn btn-link" href="/auth/connexion">Se connecter</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

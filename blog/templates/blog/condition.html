@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+
+{% block title %}Condition{% endblock %}
+
+{% block content %}
+
+    <h2>Bienvenue !</h2>
+
+    Bonjour
+    {% if sexe == "Femme" %}
+        Madame
+    {% elif sexe == "Homme" %}
+        Monsieur
+    {% else %}
+        C'est quoi cette merde, soit Femme soit Homme hazebi tefhemch
+    {% endif %} !
+
+{% endblock %}

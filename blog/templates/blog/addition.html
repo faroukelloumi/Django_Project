@@ -1,0 +1,12 @@
+
+{% extends 'index.html' %}
+
+{% block title %}Calculatrice{% endblock %}
+
+{% block content %}
+
+    <h1>Ma super calculatrice</h1>
+    <p>{{ n1 }} + {{ n2 }}, ça fait <strong>{{ total }}</strong> !<br />
+    Nous pouvons également calculer la somme dans le template : {{ n1|add:n2 }}.</p>
+
+{% endblock %}
