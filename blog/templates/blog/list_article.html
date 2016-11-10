@@ -4,74 +4,54 @@
 
 {% block content %}
 
+
 <h2>Bienvenue sur mon site d'entrainement Django</h2>
 
 {% if articles %}
-    <ul id="article">
-        {% for article in articles %}
-            <il>
-                <h2>{{ article.titre }}</h2>
-                <p>{{ article.auteur }}</p>
-                <p><a href="/blog/article/{{ article.id }}">Ouvrir l'article</a></p>
-            </il>
-        {% endfor %}
-    </ul>
+    <table class="table table-hover" id="article">
+       <thead>
+            <tr >
+                <th class="loula">Titre</th>
+                <th class="loula">Auteur</th>
+                <th class="loula">Categorie</th>
+                <th class="loula">Date de pubication</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for article in articles %}
+
+                <tr class="odd west" onclick="goTo({{ article.id }})">
+                        <td>{{ article.titre }}</td>
+                        <td>{{ article.auteur }}</td>
+                        <td>{{ article.categorie }}</td>
+                        <td>{{ article.date }}</td>
+                </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+
     {# .... **Now the pagination section** .... #}
     {% if is_paginated %}
 
         <ul class="pagination"></ul>
-        <script>
-            var n_pages = {{ page_obj.paginator.num_pages }}
-            var url = window.location.search;
-            var n = url.substring(url.lastIndexOf("=")+1);
-            console.log(n_pages, url, n);
-            if (n > 1) {
-                linkElt = document.createElement("li");
-                pageElt = document.createElement("a");
-                pageElt.href = "/blog/list_article?page=" + 1;
-                pageElt.textContent = "<<";
-                linkElt.appendChild(pageElt);
-                document.querySelector(".pagination").appendChild(linkElt);
-                n--;
-                var linkElt = document.createElement("li");
-                var pageElt = document.createElement("a");
-                pageElt.href = "/blog/list_article?page=" + n;
-                n++;
-                pageElt.textContent = "<";
-                linkElt.appendChild(pageElt);
-                document.querySelector(".pagination").appendChild(linkElt);
-             }
-            for (i = 1; i <= n_pages ; i++) {
-                var linkElt = document.createElement("li");
-                var pageElt = document.createElement("a");
-                pageElt.href = "/blog/list_article?page=" + i;
-                pageElt.textContent = i;
-                if (i == n) {
-                    linkElt.classList.add("active");
-                };
-                linkElt.appendChild(pageElt);
-                document.querySelector(".pagination").appendChild(linkElt);
-            }
-            if (n < n_pages) {
-                n++;
-                linkElt = document.createElement("li");
-                pageElt = document.createElement("a");
-                pageElt.href = "/blog/list_article?page=" + n;
-                pageElt.textContent = ">";
-                linkElt.appendChild(pageElt);
-                document.querySelector(".pagination").appendChild(linkElt);
-                var linkElt = document.createElement("li");
-                var pageElt = document.createElement("a");
-                pageElt.href = "/blog/list_article?page=" + n_pages;
-                pageElt.textContent = ">>";
-                linkElt.appendChild(pageElt);
-                document.querySelector(".pagination").appendChild(linkElt);
-            }
-        </script>
+
+
     {% endif %}
 {% else %}
     <h3>Mes articles</h3>
     <p>Pas d'articles!!! :(</p>
 {% endif %}
+
+<!-- <script src="/static/blog/js/ajout_article.js"></script> -->
+<script>
+    var n_pages = {{ page_obj.paginator.num_pages }};
+</script>
+<script src="/static/blog/js/paginator.js"></script>
+<script>
+    function goTo(article_id) { document.location.href = '/blog/article/' + article_id;}
+</script>
+
+
 {# .... **More content, footer, etc.** .... #}
 {% endblock %}

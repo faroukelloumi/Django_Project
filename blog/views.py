@@ -25,7 +25,7 @@ class ListArticle(ListView):
     model = Article
     context_object_name = 'articles'
     template_name = 'blog/list_article.html'
-    paginate_by = 3
+    paginate_by = 5
 
 
 class LireArticle(DetailView):
@@ -77,18 +77,31 @@ def boucle(request, choix):
 class CategorieCreate(CreateView):
     template_name = 'blog/add_categorie.html'
     model = Categorie
-    success_url = '/blog/home'
+    success_url = '/blog/add_categorie'
     fields = ('nom',)
+
+    def get(self, request, *args, **kwargs):
+        form = CategorieForm()
+        return render(request, self.template_name, locals())
+
+    def post(self, request, *args, **kwargs):
+        form = CategorieForm(request.POST)
+        if form.is_valid():
+            form.save()
+            print "categrie saved"
+            messages.success(request, 'Votre nouvelle categorie a été ajoutée !')
+
+        return render(request, self.template_name, locals())
+
 
 
 def add_article(request):
 
-    envoi = False
     if request.method == 'POST':
         form = ArticleForm(request.POST)
         if form.is_valid():
             form.save()
-            envoi = True
+            messages.success(request, 'Votre article a été ajouté !')
     else:
         form = ArticleForm()
 
@@ -99,6 +112,7 @@ class ListContact(ListView):
     template_name = 'blog/view_contact.html'
     model = Contact
     context_object_name = 'contacts'
+    paginate_by = 3
 
 
 def add_contact(request):

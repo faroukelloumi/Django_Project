@@ -3,6 +3,7 @@
 from django import forms
 from models import Article, Categorie, Contact
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 class ContactForm(forms.ModelForm):
     class Meta:
@@ -42,6 +43,19 @@ class CategorieForm(forms.ModelForm):
     class Meta:
         model = Categorie
         fields =('nom', )
+
+
+    def is_valid(self):
+        valid = super(CategorieForm, self).is_valid()
+        if not valid:
+            return False
+        nom = self.cleaned_data.get('nom')
+        print Categorie.objects.filter(nom=nom)
+        try:
+            Categorie.objects.get(nom=nom)
+            return False
+        except :
+            return True
 
 
 

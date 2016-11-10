@@ -9,13 +9,16 @@ from django.core.files import File
 from authent.forms import *
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
+from django.contrib import messages
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 
 
 def connexion(request):
-    error = False
-    print 'method = ', request.method
+
     if request.method == "POST":
         form = ConnexionForm(request.POST)
         if form.is_valid():
@@ -24,10 +27,9 @@ def connexion(request):
             user = authenticate(username=username, password=password)  # Nous vérifions si les données sont correctes
             if user:  # Si l'objet renvoyé n'est pas None
                 login(request, user)  # nous connectons l'utilisateur
-                print 'na7na lena'
                 return HttpResponseRedirect('/blog/home')
             else: # sinon une erreur sera affichée
-                error = True
+                messages.error(request, 'Utilisateur ou mot de passe inconnu')
     else:
         form = ConnexionForm()
 
@@ -62,14 +64,14 @@ def enregistrement(request):
     return render(request, 'authent/add_user.html', locals())
 
 def add_avatar(request):
-    sauvegarde = False
+
     if request.method == 'POST':
         form = ProfileForm(request.POST, request.FILES)
         if form.is_valid():
             profile, created = Profile.objects.get_or_create(user=request.user)
             profile.avatar=form.cleaned_data['avatar']
+            messages.success(request, 'Votre avatar a été sauvegardé !')
             profile.save()
-            sauvegarde = True
     else:
         form = ProfileForm()
 

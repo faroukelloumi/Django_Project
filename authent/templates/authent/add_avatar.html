@@ -4,9 +4,10 @@
 
 {% block content %}
 
+
 <h1>Ajout d'un avatar pour {{ request.user.first_name }}</h1>
 
-{% if sauvegarde %}<div class="rep_pos">Votre avatar a été sauvegardé !</div>{% endif %}
+
 
 <form action="" enctype="multipart/form-data" method="post">
     {% csrf_token %}

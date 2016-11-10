@@ -8,7 +8,60 @@
 {% for contact in contacts %}
 <h2>{{ contact.prenom }} {{ contact.nom }}</h2>
 Adresse : {{ contact.adresse|linebreaks }}<br/>
-    <img src="{{ contact.photo.url }}"/>
+    <img src="{{ contact.photo.url }}"/><br/>
 {% endfor %}
+
+{% if is_paginated %}
+
+        <ul class="pagination"></ul>
+        <script>
+            var n_pages = {{ page_obj.paginator.num_pages }}
+            var url = window.location.search;
+            var n = url.substring(url.lastIndexOf("=")+1);
+            console.log(n_pages, url, n);
+            if (n > 1) {
+                linkElt = document.createElement("li");
+                pageElt = document.createElement("a");
+                pageElt.href = "/blog/view_contact?page=" + 1;
+                pageElt.textContent = "<<";
+                linkElt.appendChild(pageElt);
+                document.querySelector(".pagination").appendChild(linkElt);
+                n--;
+                var linkElt = document.createElement("li");
+                var pageElt = document.createElement("a");
+                pageElt.href = "/blog/view_contact?page=" + n;
+                n++;
+                pageElt.textContent = "<";
+                linkElt.appendChild(pageElt);
+                document.querySelector(".pagination").appendChild(linkElt);
+             }
+            for (i = 1; i <= n_pages ; i++) {
+                var linkElt = document.createElement("li");
+                var pageElt = document.createElement("a");
+                pageElt.href = "/blog/view_contact?page=" + i;
+                pageElt.textContent = i;
+                if (i == n) {
+                    linkElt.classList.add("active");
+                };
+                linkElt.appendChild(pageElt);
+                document.querySelector(".pagination").appendChild(linkElt);
+            }
+            if (n < n_pages) {
+                n++;
+                linkElt = document.createElement("li");
+                pageElt = document.createElement("a");
+                pageElt.href = "/blog/view_contact?page=" + n;
+                pageElt.textContent = ">";
+                linkElt.appendChild(pageElt);
+                document.querySelector(".pagination").appendChild(linkElt);
+                var linkElt = document.createElement("li");
+                var pageElt = document.createElement("a");
+                pageElt.href = "/blog/view_contact?page=" + n_pages;
+                pageElt.textContent = ">>";
+                linkElt.appendChild(pageElt);
+                document.querySelector(".pagination").appendChild(linkElt);
+            }
+        </script>
+    {% endif %}
 
 {% endblock %}

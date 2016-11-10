@@ -32,4 +32,4 @@ class UserForm(forms.Form):
         return cleaned_data  # Ne pas oublier de renvoyer le contenu du champ traité
 
 class ProfileForm(forms.Form):
-    avatar = forms.ImageField(label='avatar')
+    avatar = forms.ImageField(label='Avatar')

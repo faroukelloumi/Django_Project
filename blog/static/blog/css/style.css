@@ -46,3 +46,21 @@ h1
 {
    width: 20px;
 }
+
+.loula
+{
+    text-align: center;
+    text-color: blue;
+    background-color: #f8f8f8;
+    border-color: #e7e7e7;
+}
+.west
+{
+    text-align: center;
+    height:60px;
+}
+
+.west:hover
+{
+    cursor: pointer;
+}
